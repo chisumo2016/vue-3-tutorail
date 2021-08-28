@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>List Rendering</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h2 v-for="(name,index) in names" :key="name">{{ index}}{{ name}}</h2>
+        <br>
+        <ul>
+            <li v-for="post in posts" :key="post.id">{{ post.title }}</li>
+        </ul>
+        <br>
+        <div v-for="actor in actors" :key="actor.name">
+            <h2>{{ actor.name}}</h2>
+            <h3 v-for="movie in actor.movies" :key="movie">{{ movie}}</h3>
+        </div>
+
+        <h4 v-for="(value , key , index) in myInfo" :key="value">{{key}}{{index}}{{ value}}</h4>
+
+
+        <template v-for="name in names" :key="name">
+            <h2>{{ name}}</h2>
+        </template>
+    </div>
+
+
+
+
+    <script>
+         new Vue({
+             el: '#app',
+             data : {
+                 posts: [
+                     //Array of object
+                     {id:1, title: 'Tanzania', body:'We love Tanzania'},
+                     {id:2, title: 'Kenya', body:'We love Kenya'},
+                     {id:3, title: 'Uganda', body:'We love Uganda'},
+                     {id:4, title: 'Burundi', body:'We love Burundi'},
+                 ],
+
+                 //array of string
+                 names:['Bruce','Clark','Diana'],
+
+                 //array of Array
+
+                 actors:[
+                     {
+                         name: 'Christian Bale',
+                         movies: ['Batman', 'The Prestige']
+                     },
+                     {
+                         name: 'Di Bale',
+                         movies: ['Titanic', 'Inception']
+                     }
+                 ],
+                 myInfo:{
+                     name: 'Vishwas',
+                     channel:'Codevolution',
+                     course:'Vue 3'
+                 }
+             }
+         })
+    </script>
+
+</body>
+</html>

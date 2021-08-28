@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+
+        <h1 v-if="isActive">{{ message}}</h1>
+
+        <h1 v-else-if="message === 'conditional-rendering'"> We Party</h1>
+
+        <h1 v-else> NO USER</h1>
+
+        <br>
+        <span v-if="seen">Now you see me</span>
+    </div>
+
+
+    <script>
+         new Vue({
+             el: '#app',
+             data :{
+                 message : "conditional-rendering",
+                 isActive: false,
+                 seen: true
+             }
+         })
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>{{ message}}</h1>
+        <button v-on:click="changeName">Change Name</button>
+        <button @click="changeNameEvent($event), increment(1, $event)">Change Name</button>
+
+        <h2>{{ count}}</h2>
+        <button @click="increment(1, $event)">Increment</button>
+        <button v-on:click="increment(5)">Increment</button>
+        <button v-on:click="decrement(1)">Decrement</button>
+        <button v-on:click="decrement(5)">Decrement</button>
+
+    </div>
+
+    <script>
+         new Vue({
+             el: '#app',
+             data (){
+                 return {
+                     name : "Hallo",
+                     count: 0
+                 }
+             },
+             methods:{
+                 increment(num){
+                     this.count +=m
+                 },
+                 decrement(num){
+                     this.count -=m
+                 },
+                 changeName(){
+                     this.name  = 'Batman'
+                 },
+                 changeNameEvent(event){
+                     this.name  = 'Batman'
+                     console.log('Event', event)
+                 }
+             }
+         })
+    </script>
+
+</body>
+</html>

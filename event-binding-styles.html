@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+    <!-- Javascript property-->
+    <div id="app">
+
+        <button @click="increaseFont">Increase</button>
+        <button @click="DecreaseFont">Decrease</button>
+        <div :style="{color:'red', fontSize: fontSize + 'px'}">{{ message}}</div>
+    </div>
+
+
+    <script>
+         new Vue({
+             el: '#app',
+             data :{
+                 //property
+                 message : "Event Bindinding Stles",
+                 fontSize : 12,
+             },
+             methods: {
+                 //function
+                /* increaseFont: function () {
+                     console.log('Hi');//Old Styles
+                 }*/
+
+                 increaseFont () {
+                     this.fontSize++;
+                 },
+                 DecreaseFont () {
+                     this.fontSize--;
+                 }
+             }
+         })
+    </script>
+
+</body>
+</html>

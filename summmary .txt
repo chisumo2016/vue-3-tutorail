@@ -1,0 +1,636 @@
+Reactive vue data
+Displaying data
+Form data collection
+Displaying data sets
+Event handling
+Components
+Props
+Component reusability
+Asynchronous api calls
+JWT Authentication
+Login & Signup
+Pagination
+Loading state
+Error handling
+Frontend css frameworks integration
+Vue-cli
+Application deployment
+
+https://github.com/vuejs/vue-next
+sudo npm install -g @vue/cli
+npm i -g @vue/cli-init
+   babel
+   webpack
+
+   Vuex
+   Vue Router
+   Vuetify for UI
+   -vue --version
+Create a project
+
+- vue create name of project press enter
+-npm registry select  Y/N  No
+-Please pick a preset : Select Vue 3 Preview
+        (Vue babel .eslint_
+-use npm/yarn as packet manager
+
+
+PROJECT STRUCTURE
+Root level we have three folder and 5 files
+.Vue File
+consist of
+<template></template>
+  the template block is like the hTML of ui
+<script></script>
+  is where the logic and functionality of app  can be maintained
+<style></style>
+
+components
+ A .vue file called a single file components (SFC)
+
+ Conditional Rendering
+    v-if
+    v-else
+    v-else-if
+    v-show
+
+  List Rendering
+   v-for directive
+    Display
+        Array of strings
+        Array of objects
+        Array of arrays
+        Block of HTML elements
+        Object key value pairs
+
+
+LISTS AND KEYS
+KEY ATTRIBUTES
+   A common practise and also recommended to provide a key attribute with the v-for directive
+   Key is special attribute which is primarily used a s hint for vue's virtual DOM
+    algorithm to identify nodes when diffing the new DOM tree with the old DOM tree
+   The key attributes helps Vue identifying which items in a list have changes, are added or removed
+     and plays a crucial role in handling UI updated correctly and efficiently.
+
+Conditional List Rendering
+
+Event Handling
+ -dynanic website use events
+         <button v-on:click="name = 'Batman'">Change Name</button>
+         <button @click="name = 'Batman'">Change Name</button>
+
+Form Handling
+    Capature user inputs
+    Inputs
+    Textarea
+    Singe select dropdown control
+    Multi select control
+    Checkbox
+    Checkbox group
+    Radio
+    Submit form data
+Accomplish in Vue
+
+Template    Form Controls
+                            V-Model (Two way binding)
+Scripts     Form Data
+
+MODIFIERS
+ a suffix you can add top either the V-ON directive or V-MODEL directive to add some functionality inline within the template
+ Help you write cleaner code
+    example
+    v-model.trim
+    v-model.number
+    v-model.trim.lazy //form validation
+    @submit.prevent
+     @keyup.enter="submitForm"
+
+Bonus Directives
+
+v-once
+v-pre
+
+COMPUTED PROPERTIES
+Ways top display data in UI
+    Static HTML
+    Text Interpolation
+    Simple expressions
+    Methods return value
+    Computed properties
+  Properties that can be found to the template like data properties
+  They are used for composing new data from existing sources
+  They are highly performant as they are cached calculations which only update when their dependencies change
+  why should I use data properties or computed properties?computed properties you can use in multiple place
+
+  Computed Properties vs Methods
+  CP -get Cached
+
+  Computed Properties and v-for
+
+Computed Setter
+  getter
+  setter
+
+Watchers
+ Allow you to watch any data  or computed property and execute some code in response top changes in the value
+
+ Example
+ Implement a Volume tracker
+ See the current volume level
+ Increase or decrease the volume level
+
+ Watchers vs Computed Properties
+   Can I use watchers instead of computed properties ? Yes
+    Watchers simply provide a more generic way to react tp data changes
+    However, it is not recommended to mimic a computed property as a watcher
+     1:You need to compose new data from existing data sources
+       computed:{
+        fullName(){
+           return `${this.firstName} ${this.lastName}`
+       },
+
+        firstName(value){
+            this.fullName = value + ' ' + this.lastName
+        },
+
+        lastName(value){
+            this.fullName = this.firstName + ' ' + value
+        },
+
+       Use Computed when
+        1:You need to compose new data from existing data sources
+           computed:{
+            fullName(){
+               return `${this.firstName} ${this.lastName}`
+           },
+        2: You need tp reduce the length of a variable
+
+    Use Watcher when
+   1: You need to check if a property has changed to a favorable value to know if you're ready to perform an action
+       watch: {
+            volume(newValue, oldValue){
+                if (newValue > oldValue && newValue === 16){
+                    alert(
+                        'Listening to a high volume for a long time may damage your hearing'
+                    )
+                }
+            }
+  2: You have to call an API in response to change in application data
+  3:You have to apply transitions
+
+  Immediate and Deep Watchers
+
+COMPONENTS
+Vue follows a component based architecture
+This let you break your application into small encapsulation parts which can then be
+ composed to make more complex user interfaces.
+  Example
+     Header
+     Sidebar
+     Main Content
+     Footer
+  All the above are wrapped into single Root(App) Component -parent
+  -component are reusable
+
+  App.vue file
+    Template
+    Script
+    Style
+
+
+Component Props -Props allow you to re-use components by passing in different data
+ -custom attribute
+ -To pass data static
+ -To pass data dynamically
+
+ Remember Props allow to send a data from parent component to child name
+
+
+Prop Types and Validations
+-Props allow you to re-use components by passing in different data
+The App.Vue is the Parent which pass the data top the child
+Child -props -array
+-we need to specify the types
+      title: String,  //prop types
+      likes: Number,
+      isPublished: Boolean
+      Object props
+      Array props
+<Article title="Article Title" :likes="50" :isPublished="true"/>  Customs attributes
+
+ Non Prop Attributes
+Is an attribute that is passed to a component , but doesnt have a corresponding property defined in the props option
+Example of non props attributes
+   Id , Class Style Attributes
+
+Provide and Inject
+The two APIs provide  a way to pass data through the component tree without having to pass down props manually at every level
+
+   1: Provide the value in the App Component
+   2: Inject the value in the component F
+
+Remember Props allow to send a data from parent component to child name
+
+Component Events
+Custom component events
+Parents -------Props------------------>Child Component
+Parent<--------Customs Event----------Child Component
+Example
+ Popup example
+    App Component
+     Open Popup button
+
+     Popup Component
+     Close Popup button we to hide
+
+-In child component we use emits to pass data to parent and in
+-Parent we bind the data @close which is customs event
+-We can pass data from child as second arg via $emit binding
+   @click="$emit('close','John')"
+
+Validating Emitted Events
+ -Validating the custom event which are passed from child to parents
+ -we need to change the emits from an array to object
+     emits:['close'], //customs event
+     emits:{
+
+       },
+myName
+- in custom components
+
+SLOTS
+Props allow you to re-use components by passing in different data
+Although props are great for re-usability , we do have a strict parent -child relationship
+The child will always be in control of the HTML content and parent can only pass in different data values
+Slots on the other hand are more powerful
+They allow to reuse a component
+They allow the parent component to control the content inside the child content
+Slots allow parent component to embed any content in a child component including html elements
+sytanx
+<slot></slot>
+add image ,html element and content
+Can be controlled in paren
+
+Named Slots
+If we have multiple slot in child ,vue doesn't understand
+   child Component
+    <div id="card-header">
+        <slot name="header"></slot>
+     </div>
+     <div id="card-content">
+       <slot>Default Content</slot>
+     </div>
+     <div id="card-footer">
+       <slot name="footer"></slot>
+     </div>
+
+ Parent Component
+       <Card>
+          <template v-slot:header>
+             <h3>Header</h3>
+          </template>
+         <template v-slot:default>
+           <img src="https://picsum.photos/200" alt="">
+         </template>
+         <template v-slot:footer>
+           <button>Views Details</button>
+         </template>
+       </Card>
+
+
+
+Slots Props
+- in one page we can display the firstname and other page last name (NameList as Example)
+-We want the parent component to control the child component -to see how it render the data
+-The NameList is present the in child ,how do u present in parent?
+     we use slots props by sending data to the parent
+     Child Component
+     <slot :firstName="name.firstName" :lastName="name.lastName"></slot>   child
+
+        Parent Component
+        <NameList>
+             <template v-slot:default="slotProps">
+               {{ slotProps.firstName}} {{ slotProps.lastName}}
+             </template>
+          </NameList>
+          <NameList>
+            <template v-slot:default="slotProps">
+              {{ slotProps.firstName}} {{ slotProps.lastName}}
+            </template>
+          </NameList>
+
+          <NameList>
+            <template v-slot:default="slotProps">
+              {{ slotProps.firstName}}
+            </template>
+          </NameList>
+
+Component Styles
+Global Styles
+By default, a component styles are applied globally in the component tree
+Scope attribute
+Scoped attribute ensures a component's CSS will apply only to its own HTML elements*
+   "With scoped , the parent components styles will not leak into child components.However, a child component's
+   root will be affected by both the parents scoped CSS and the child's scoped CSS. This is by design so that
+   the parent can style the child root element for layout purpose" CSS MODULE
+
+When using slots , the parent components styles are applied and not the child component styles even though the content
+ is embedded inside the child component
+ Child Component   <slot></slot>
+Parent Component  <ChildStyles>ChildStyles Component</ChildStyles>
+
+Dynamic Components
+-Three TAB button
+By clicking each Tab the content of each will be open/displayed
+ Tab A                  Tab B                   Tab C
+  Tab A Content          Tab B Content          Tab C Content
+- we use component html tag
+  - <component :is="activeTab" /> in parent  component
+
+Keeping Dynamic Components Alive
+-to achieve caching
+-mantain the dynanic input
+    <keep-alive>
+          <component :is="activeTab" />
+    </keep-alive>
+
+ Teleport Component
+introduce in vue 3 , move element from to another
+1: create a portal root in the index file in public <div id="portal-root"></div>
+2:
+
+why do you we need teleport component
+codesandbox.io
+
+HTTP and Vue
+  How vue works with HTTP request
+  vue is frameworks  for building user interface ,Vue doesnt concerning with HTTP request
+  Vue doesnt know if their is a server in the picture
+  vue doesn't have know to fetch data
+  Vue cant fetch / send data to the server
+  how do you make a HTTP request to the vue?
+  how to make a api call to the vue?
+  Vue Component - Read data property  and bind to the UI
+
+Vue APPLICATION
+Web Application ------------Send-------------------->Server
+Web Application <------------Fetch-------------------Server
+
+Solution: HTTP LIBRARY - axios
+
+Create a new project called vue-http
+-Install axios  npm/yarn add axios
+
+HTTP GET Request
+-We need to fetch the data and render to Vue UI
+-We gonna use JSONPlaceholder
+   https://jsonplaceholder.typicode.com/
+   https://jsonplaceholder.typicode.com/posts
+STEPS
+1: Import the axios Library in PostList Components
+2:Create data property which will store the list of post (Put post empty array  posts:[])
+3:we're going to use axios to make get request  to jsonplacehopde api
+  where will u place the method?
+4:assign  response data to the posts to update the post data property
+5.We have to render the component  PostList of posts in UI using v-for
+6.Display an error msg when the post fail initialize data property errrMsg
+
+HTTP POST Request
+- we gonna use
+   https://jsonplaceholder.typicode.com/posts
+-Click Guide and go to creating resource
+   https://jsonplaceholder.typicode.com/guide/
+-request send title, body and id
+ method id Post
+  STEPS
+  -Create a component call CreatePost
+  -Add the data property
+  -Add the form in UI
+  -Attache the submit prevent in the form
+  -Create a Method createPost
+  -To make post request with axios
+        axios.post('https://jsonplaceholder.typicode.com/posts', this.formData)
+  -added the html tag to the app.vue
+  -Import the CreatePost
+
+  DELETE POST
+
+  LIFE CYCLE IN VUE
+ Component  Lifecycle Hooks
+   -different  phase on how vue goes in phase
+   A vue component can go through 4 Phases
+        1:Creation
+        2:Mounting
+        3:Updating
+        4:Unmounting
+
+    Lifecycle hooks are methods that allow us to hook into or tap into these different phases in the
+       lifecycle of a component and execute some code
+         13 Phase
+         List Of Lifecycle Hooks
+         CREATION     -  beforeCreate(), created() is the best on api call
+         MOUNTING     -  beforeMount() , mounted()  - DOM is ready
+         UPDATING     -  beforeUpdate() , update()
+         UNMOUNTING   -  beforeUnmount() , unmounted()   - REMOVE FROM THE DOM
+         MISC         -  activated(), deactivated(), errorCaptured(), renderTracked(), renderTriggered()
+
+Example
+   Parent.vue
+   Child.vue
+   You can create many component and attach to parent
+
+GET Request on Page Load
+ Let use the last example of Creating post
+ -When we click the page Load Button we were able to List all the post
+ -But now we're going to use Page Load instead of Button
+ -Create a method of life cycle
+      created(){ //life cycle
+       this.getPosts()  //Page Load
+
+Template Refs
+-access the DOM node directly within vue
+
+Reusability with Mixins
+example : ClickCounter.vue
+Mixins allow us to share the functionality on different component
+-create a folder called Mixins
+-copy data() and methods: to mixin file called counter
+-You can add other method in mixins file like watcher , life cycle
+
+ Composition API
+ -Addition into VUE 3
+ What is the composition API ?
+   The composition API is a feature in Vue 3 which gives us another way to write our components
+   More specifically , the script block in a component
+   Option API - data(), computed properties, methods, watchers and lifecycle hooks - Component
+   What we have learned so far is the Options API which is one way to build components in Vue.
+   The other way is to use the COMPOSITION API
+
+Why composition API?
+ 1:Vue projects became hard to manage as they grew in size and complexity
+   With the options API , components are organised using options such as
+        data()
+        methods()
+        created()
+        mounted() and so on  ->replace these with composition API
+
+   Logic isn't really grouped by feature, which can make it hard to read through a large and complex component file,
+   as developer will have to scroll back and fro to look for particular features
+  2:Re using logic across components became difficulty.
+
+   COMPOSITION API
+   The composition API allows us to encasulate one piece of functionality so that you can use it in different components
+      throughout the application.
+ref return reactive
+
+Replacing data with ref(string ,boolean)  primitive type
+ref use to replace data OPTION in components
+import { ref } from 'vue' in child class
+example Data.vue and register APP.VUE
+
+Replacing data with reactive -Deal with object
+Reactive function  -help to resolve code repeation
+  use import { ref , reactive } from 'vue' - child component
+  -revonke it
+
+Reactivity and toRefs
+Example watch DemoTwo Vue
+  import { reactive, toRefs} from "vue";
+   return toRefs(state) instead of it wont update automatically
+     /* return {
+        //state
+        firstName: state.firstName,
+        lastName: state.lastName,
+      }*/
+
+Replacing methods
+we need to replace methods to use composition API
+1-import { ref } from 'vue' within Methods
+2-we can use reactive
+
+ v-model and Composition API
+ -create the Vmodel Vue Component
+ -Import  { ref, reactive, toRefs} Vmodel.vue
+
+ Replacing Computed Properties
+-create a file call computed.vue
+-accepted by .value
+-look by reactive ,refs
+
+Replacing Watchers (Part 1)
+-create a watcher.vue file
+-we need to replace the watcher with composition API
+-replace watch with composition Api with refs function
+-Watch can watch multiple source or arrays
+-Can use immediate  w/c is an object
+-import {ref , watch } from "vue";
+
+Replacing Watchers (Part 2)
+-Gonna use REACTIVE
+-import {ref , watch ,reactive, toRefs} from "vue";
+-Use npm add lodash
+
+Replacing Provide/Inject
+create a provide/Inject file in vue which is parent component
+create three file ChildA ,ChildB, ChildC
+Use normal component option
+-Implement composition API
+-Implement using provide, ref, reactive,toRefs
+provide function accept label as value argument IN CHILD COMPONENT C
+create a button COUNT
+
+Replacing Lifecycle Hooks
+Lifecycle Hooks with Composition API
+-Can be registered and work with CA
+Option API              Hook inside setup
+beforeCreate           Not needed
+created                Not Needed
+beforeMount            onBeforeMount
+mounted                onMounted
+beforeUpdated          onBeforeUpdated
+updated                onUpdated
+beforeUnmount          onBeforeUnmount
+Unmounted              onUnmounted
+errorCaptured          onErrorCaptured
+renderTracked          onRenderTracked
+renderTriggered        onRenderTriggered
+
+
+Template Refs and Composition API
+-to access dom node directly within vue
+-use ref and onmounted
+
+Props and Composition API  -PR component to Child
+-created two files Person and PersonGreeting
+-Person.Vue is parent Component and Person is child
+-use computed function and import
+-Passing the information from parent component to the child component
+
+Custom Events and Composition API
+-send the custom event from a child component to parent component
+-Let us use the same example from above  Person vs PersonGreeting
+-Child Component -add the button
+-how do u emit the setup event in setup()
+-Let us listen Hero event to the Parent Component  Perosn.Vue (@callHeroes="callHeroes")
+-define the handler within the Parent
+-successfull send customs event from CH to PR
+-Context object expose three properties emit ,slot , attributes
+-CA replacing of mixins , reuse function in multiple
+
+ Reusability with Composition API
+ -create two files HoverCounter and ClickCounter
+- we learned mixins
+-what if the application is growing the functinality
+-IT allow to reuse both functionality while at the sametime addressing both the limitation mixins have
+-CREATE a folder called composables  in src
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

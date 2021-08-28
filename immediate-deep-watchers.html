@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Watchers</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>Volume Tracker (0 - 20)</h1>
+        <h3>Current Volume {{volume }}</h3>
+        <div>
+            <button @click="volume +=2">Increase</button>
+            <button @click="volume -=2">Decrease</button>
+        </div>
+
+        <input type="text" v-model="movie"/>
+        <input type="text" v-model="movieInfo.title"/>
+        <input type="text" v-model="movieInfo.actor" />
+
+        <div>
+            <button @click="movieList.push('Wonder Man')">Add Movie</button>
+            <button @click="movieList.concat(['Wonder Man'])">Add Movie</button>
+        </div>
+
+
+    </div>
+
+    <script>
+         new Vue({
+             el: '#app',
+             data (){
+                 return {
+                     volume : 0,
+                     movie:'Batman',
+                     movieInfo:{
+                         title:'',
+                         actor:''
+                     },
+                     movieList: ['Batman','Superman']
+                 }
+             },
+             methods:{},
+             computed:{},
+             watch: {
+                 volume(newValue, oldValue){
+                     if (newValue > oldValue && newValue === 16){
+                         alert(
+                             'Listening to a high volume for a long time may damage your hearing'
+                         )
+                     }
+                 },
+                movie:{
+                     handler(newValue){
+                         console.log(`Calling API with movie name = ${newValue}`)
+                     },
+                    immediate: true,
+                },
+                 movieInfo: {
+                     handler(newValue){
+                         console.log(`Calling API with movie title = ${newValue.title} and actor =  ${newValue.actor} `)
+                     },
+                     deep: true
+                 },
+                 movieList: {
+                     handler(newValue){
+                         console.log(`Updated list ${newValue}`)
+                     },
+                     //deep: true
+                 }
+             },
+
+         })
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1 v-if="num === 0">The number is zero</h1>
+        <h1 v-else-if="num < 0">The number is Negative</h1>
+        <h1 v-else-if="num > 0">The number is  Postive</h1>
+        <h1 v-else>The number is not  zero</h1>
+
+        <template v-if="display">
+            <h2>Banana</h2>
+            <h2>Toy</h2>
+            <h2>Car</h2>
+        </template>
+    </div>
+
+    <script>
+         new Vue({
+             el: '#app',
+             data :{
+                 num: 5,
+                 display:true
+             }
+         })
+    </script>
+
+</body>
+</html>

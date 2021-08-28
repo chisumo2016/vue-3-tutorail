@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+         <h2>Fullname - {{ firstName }} {{ lastName }}</h2>
+         <h2>Computed Fullname - {{ fullName }} </h2>
+        <h1>Total - {{ items.reduce((total,curr) => (total + curr.price), 0)}}</h1>
+        <h1>Computed Total - {{ total}}</h1>
+
+        <button @click="items.push({id:4 , title: 'Keyboard',price: 50})">Add Item</button>
+
+        <hr>
+        <h2>Method Total {{ getTotal}}</h2>
+        <br>
+        <input type="text" v-model="country">
+
+    </div>
+
+    <script>
+         new Vue({
+             el: '#app',
+             data (){
+                 return {
+                     firstName: "Jon",
+                     lastName: "Does",
+                     items:[
+                         {id:1, title:'TV', price:100},
+                         {id:2, title:'Phone', price:200},
+                         {id:3, title:'Laptop', price:100},
+                     ],
+                     country: ''
+                 }
+             },
+             methods:{
+                  getTotal(){
+                      console.log('geTotal Method')
+                      return this.items.reduce((total,curr) => (total + curr.price), 0)
+                  }
+             },
+             computed:{
+                 fullName(){
+                     return `${this.firstName} ${this.lastName}`
+                 },
+                 total(){
+                     console.log('total computed property')
+                     return this.items.reduce((total,curr) => (total + curr.price), 0)
+                 }
+             }
+         })
+    </script>
+
+</body>
+</html>
