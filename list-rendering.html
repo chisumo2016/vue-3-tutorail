@@ -28,6 +28,11 @@
         <template v-for="name in names" :key="name">
             <h2>{{ name}}</h2>
         </template>
+
+        <input type="text" v-bind:value="newHeo">
+        <input type="text" :[attribute]="newHeo">
+
+        <button v-bind:disabled="isDisabled">Add Hero</button>
     </div>
 
 
@@ -37,6 +42,9 @@
          new Vue({
              el: '#app',
              data : {
+                 attribute:'value',
+                 newHeo:"Tanzani",
+                 isDisabled:false,
                  posts: [
                      //Array of object
                      {id:1, title: 'Tanzania', body:'We love Tanzania'},

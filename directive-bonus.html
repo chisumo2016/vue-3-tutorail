@@ -11,6 +11,7 @@
 </head>
 <body>
     <div id="app">
+        <h1 v-if="isShowing">Vue Directive</h1>
         <h1 v-once>{{ name}}</h1>
         <button @click="name === 'Batman'">change name</button>
         <h2 v-pre>{{ name}}</h2>
@@ -22,7 +23,8 @@
              el: '#app',
              data (){
                  return {
-                     name : "Hallo"
+                     name : "Hallo",
+                     isShowing:false
                  }
              }
          })

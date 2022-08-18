@@ -11,16 +11,19 @@
 </head>
 <body>
     <div id="app">
-        <h1>{{ message}}</h1>
+        <h1>{{ title}}</h1>
+        <p>{{ message}}</p>
 
     </div>
 
     <script>
          new Vue({
              el: '#app',
-             data (){
-                 return {
-                     message : "Hallo"
+             data (){  //Hold variables/state
+
+                 return {//return OBJECY  / the state which hold the variables
+                     title:'Vue3 Tutorial',
+                     message : "Let is join the world of Vue3 JS"
                  }
              }
          })

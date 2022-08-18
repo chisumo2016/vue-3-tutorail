@@ -11,7 +11,7 @@
 </head>
 <body>
     <div id="app">
-        <h1>{{ message}}</h1>
+        <h1>{{ message .toUpperCase()}}</h1>
         <h2 v-text="channel"></h2>
     </div>
 
@@ -20,7 +20,7 @@
              el: '#app',
              data(){
                  return{
-                     message : "Binding Text"
+                     message : "Binding Text",
                      channel: 'Tanzania'
                  }
              }

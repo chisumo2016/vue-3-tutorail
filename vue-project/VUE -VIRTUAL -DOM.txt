@@ -1,0 +1,24 @@
+
+ VUE VIRTUAL DOM (Document Object Model)
+
+ -Virtual DOM
+   -copy of browser dom
+   -stored in memory and is very light
+   -Very easy to update VDOM compare to BDOM
+   -Will update the VDOM and sync to BDOM
+ State Change -------> Computed Diff ------->Re -render
+ -Will compared VDOM and BDOM
+ -Browser DOM
+
+ why do we need the VDOM while we have BDOM ?
+
+ https://v3.vuejs.org/guide/optimizations.html
+
+ 
+
+
+
+
+
+
+

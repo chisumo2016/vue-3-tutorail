@@ -1,0 +1,32 @@
+Computed Properties
+ Run when dependency Changes
+ Cached(cant computed again on is cached)
+ used as property in place of data
+ by defaults only have getters return this......
+ We can defines setters
+
+ Methods
+ Run when update occurs
+ Not Cached
+ Invoke by v-on or events
+ Have getters and setters
+
+ MODAL LOGIN
+ -Modal is components
+
+ FIREBASE
+https://console.firebase.google.com/?pli=1
+https://firebase.google.com/docs/auth/web/start#web-version-8
+https://v3.vuejs.org/guide/migration/introduction.html#vuex
+https://vuesax.com/docs/guide/#features
+
+
+
+
+
+
+
+
+
+
+

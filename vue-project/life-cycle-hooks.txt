@@ -1,0 +1,12 @@
+LIFE CYCLE HOOKS
+https://v3.vuejs.org/guide/instance.html#lifecycle-diagram
+Let us creadte an app called slider.vue
+
+ 
+
+
+
+
+
+
+

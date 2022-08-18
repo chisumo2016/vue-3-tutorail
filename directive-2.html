@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1 v-if="isShowing">Vue Directive</h1>
+        <h2 v-else-if="isShowing === null">This is v-else-if</h2>
+        <h2 v-else>This is v-else</h2>
+        <h3 v-show="isShowing">{{ count}}</h3>
+        <h3  v-text="message"></h3>
+        <h3 v-once>{{ count}}</h3>
+
+    </div>
+
+
+    <script>
+         new Vue({
+             el: '#app',
+             data :{
+                 url: 'https://google.com',
+                 isShowing:true,
+                 count:0,
+                 message:"v-text "
+             },
+             mounted(){
+                 setInterval(()=>{
+                     this.count++;
+                 },1000)
+             }
+         })
+    </script>
+
+</body>
+</html>
